@@ -27,13 +27,15 @@ class CreateUser(Screen):
     # Height of all text inputs in screen
     height_of_text_inputs = NumericProperty(0.06)
 
+    # Y position of create user button relative to elements above (the higher number the lower it's placed)
+    y_pos_create_user_button = NumericProperty(.1)
+
+
     def create_user(self):
 
         created_username = self.ids.username.text
         created_password_1 = self.ids.password_1.text
         created_password_2 = self.ids.password_2.text
-
-        print("Some changes to test")
 
         if (created_password_1 != created_password_2):
             print("The two passwords entered was different from each other. They should be identical")
