@@ -33,6 +33,8 @@ class CreateUser(Screen):
         created_password_1 = self.ids.password_1.text
         created_password_2 = self.ids.password_2.text
 
+        print("Some changes to test")
+
         if (created_password_1 != created_password_2):
             print("The two passwords entered was different from each other. They should be identical")
 
