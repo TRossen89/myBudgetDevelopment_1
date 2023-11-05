@@ -1,0 +1,42 @@
+<Login>:
+
+    RelativeLayout:
+
+
+
+        TextInput:
+            id: username
+            pos_hint: {"center_x": .5, "center_y":.7}
+            size_hint: (.6, .07)
+
+        TextInput:
+            id: password
+            pos_hint: {"center_x": .5, "center_y":.5}
+            size_hint: (.6, .07)
+
+
+        Button:
+            pos_hint: {"center_x": .3, "center_y":.3}
+            size_hint: (.38, .06)
+            text: "Login"
+            color: (.8, .6, .8, 1)
+            background_normal: ''
+            background_color: (.2, .06, .1)
+            on_release:
+                root.login()
+                #app.root.current = "frontpage"
+
+        Button:
+            pos_hint: {"center_x": .7, "center_y":.3}
+            size_hint: (.38, .06)
+            text: "Create user"
+            color: (.6, .3, .5)
+            background_normal: ''
+            background_color: (.8, .6, .8, 1)
+            border: (15, 15, 15, 15)
+            on_release:
+                app.root.current = "create_user"
+
+
+
+

@@ -1,0 +1,77 @@
+<CreateUser>:
+
+    RelativeLayout:
+        id: create_user_box
+        pos_hint: {"center_x": .5, "top": root.y_pos_of_create_user_box}
+        size_hint: (root.width_of_create_user_box, root.height_of_create_user_box)
+        background_color: (.8, .7, .6)
+
+        canvas:
+            Color:
+                rgba: .8, .4, .6, 1
+            Rectangle:
+                size: self.size
+
+
+        Label:
+            id: enter_username_label
+            text: "Enter a username:"
+            pos_hint: {"center_x": .5, "top": root.y_pos_of_top_label}
+            size_hint: (1, root.height_of_text_inputs)
+            color: (1, 1, 1)
+
+        TextInput:
+            id: username
+            pos_hint: {"center_x": .5, "top": root.y_pos_of_top_label-root.y_space_between_label_and_text_input}
+            size_hint: (1, root.height_of_text_inputs)
+
+
+        RelativeLayout:
+            id: password_box
+            pos_hint: {"center_x": .5, "top": root.y_pos_of_password_box}
+            size_hint: (root.width_of_password_box, root.height_of_password_box)
+
+            canvas:
+                Color:
+                    rgba: .2, .08, .1, .5
+                Rectangle:
+                    size: self.size
+
+
+            Label:
+                id: enter_password_label_1
+                text: "Enter a password:"
+                pos_hint: {"center_x": .5, "top": 1}
+                size_hint: (1, root.height_of_text_inputs/root.height_of_password_box)
+                color: (1, 1, 1)
+
+            TextInput:
+                id: password_1
+                pos_hint: {"center_x": .5, "top": 1-(root.y_space_between_label_and_text_input/root.height_of_password_box)}
+                size_hint: (1, root.height_of_text_inputs/root.height_of_password_box)
+
+            Label:
+                id: enter_password_label_2
+                text: "Enter password again:"
+                pos_hint: {"center_x": .5, "top": 1-(2*(root.y_space_between_label_and_text_input/root.height_of_password_box))-root.y_space_between_password_1_and_2}
+                size_hint: (1, root.height_of_text_inputs/root.height_of_password_box)
+                color: (1, 1, 1)
+
+            TextInput:
+                id: password_2
+                pos_hint: {"center_x": .5, "top": 1-(3*(root.y_space_between_label_and_text_input/root.height_of_password_box))-root.y_space_between_password_1_and_2}
+                size_hint: (1, root.height_of_text_inputs/root.height_of_password_box)
+
+
+
+
+            Button:
+                id: create_user_button
+                text: "Create user"
+                pos_hint: {"center_x": .5, "top": 1-(4*(root.y_space_between_label_and_text_input/root.height_of_password_box))-root.y_space_between_password_1_and_2-.1}
+                size_hint: (.8, .16)
+                background_normal: ''
+                background_color: (.2, .02, .02)
+                on_release:
+                    root.create_user()
+
