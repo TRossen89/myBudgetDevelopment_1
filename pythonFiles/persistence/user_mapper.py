@@ -53,7 +53,7 @@ class UserMapper:
 
 
     @classmethod
-    def create_user_request(cls, username, password):
+    def create_user(cls, username, password):
 
         try:
             myCursor = DBConnection.connect_to_DB()
@@ -76,7 +76,6 @@ class UserMapper:
                     return "insert_command_failed"
 
             finally:
-
                 DBConnection.commit_and_close_DB()
                 print("DB is closed")
 

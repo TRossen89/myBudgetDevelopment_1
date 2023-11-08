@@ -1,0 +1,40 @@
+<Pop_Message>:
+
+    id: popup_title
+
+    title: "Passwords not identical"
+
+    title_size: "38"
+
+    title_align: "center"
+
+    pos_hint: {"center_x": .5, "center_y": .65}
+    title_color: (1, 1, 1, 1)
+    separator_color: (1, 1, 1, 1)
+    separator_height: "1dp"
+    padding: 0
+    #background: "images_icons_and_videos/burger_menu_BACKGROUND.png"
+
+    RelativeLayout:
+
+        Label:
+            id: message
+
+            text: ""
+
+            pos_hint: {"center_x": .5, "center_y": .8}
+
+            text_size: self.size
+            halign: "center"
+            valign: "center"
+
+            background_color: (.8, .4, .4, .5)
+
+
+        Button:
+            id: ok_button
+            text: "OK"
+
+            pos_hint: {"center_x": .5, "center_y": .3}
+            on_release:
+                root.dismiss()
