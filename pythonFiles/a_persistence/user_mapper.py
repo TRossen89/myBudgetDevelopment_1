@@ -1,5 +1,5 @@
 import re
-from pythonFiles.persistence.db_connection import DBConnection
+from pythonFiles.a_persistence.db_connection import DBConnection
 
 class UserMapper:
 

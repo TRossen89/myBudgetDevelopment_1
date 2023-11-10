@@ -1,8 +1,9 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.screenmanager import NumericProperty
-from pythonFiles.persistence.user_mapper import UserMapper
+from pythonFiles.a_persistence.user_mapper import UserMapper
 
-from pythonFiles.pop_ups.pop_a_message import Pop_Message
+from pythonFiles.c_pop_ups.pop_a_message import Pop_Message
+from pythonFiles.e_layouts.rel_top_bar import *
 
 class CreateUser(Screen):
 
@@ -42,6 +43,20 @@ class CreateUser(Screen):
     width_of_password_box = NumericProperty(1)
     height_of_password_box = NumericProperty(.6)
     y_pos_of_password_box = NumericProperty(.68)
+
+
+    def __init__(self, **kwargs):
+        super(CreateUser, self).__init__(**kwargs)
+
+
+        self.top_bar = Rel_TopBar("Create User", True, False)
+        self.add_widget(self.top_bar)
+
+
+    def save_as_previous_screen(self):
+
+        save_screen_as_previous_screen("create_user")
+        pass
 
 
     def create_user(self):

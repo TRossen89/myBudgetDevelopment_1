@@ -1,0 +1,49 @@
+
+
+<Rel_TopBar>:
+
+    size_hint: (1, .05)
+    pos_hint: {"center_x": .5, "top": 1}
+
+    canvas:
+        Color:
+            rgba: (.6, .6, 1, 1)
+
+        Rectangle:
+            size: self.size
+
+
+    ImageButton:
+
+        id: back_arrow
+
+        source: "resources/images/back_arrow.png"
+
+        size_hint: (.05, .85)
+        pos_hint: {"x": .08, "top": 1}
+
+        on_release:
+            root.update_previous_screen()
+            app.root.current = root.previous_screen
+            #root.manager.transition.direction = "right"
+
+    Label:
+        id: budget_name
+
+        color: (0, 0, 0, 1)
+        size_hint: (.60, .85)
+        pos_hint: {"x": .2, "top": 1}
+
+
+    ImageButton:
+        id: burger_menu
+        source: "resources/images/burger_menu_ScreenShot.png"
+
+        size_hint: (.05, .85)
+        pos_hint: {"x": .87, "top": 1}
+
+        on_release:
+            root.burger_menu_open()
+
+
+

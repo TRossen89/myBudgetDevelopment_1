@@ -7,9 +7,10 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import NoTransition
 #from kivy.uix.tabbedpanel import TabbedPanel
 
-from pythonFiles.screens.screen_a_login import Login
-from pythonFiles.screens.screen_b_create_user import CreateUser
-from pythonFiles.screens.screen_c_frontpage import Frontpage
+from pythonFiles.d_screens.screen_a_login import Login
+from pythonFiles.d_screens.screen_b_create_user import CreateUser
+from pythonFiles.d_screens.screen_c_frontpage import Frontpage
+
 
 
 

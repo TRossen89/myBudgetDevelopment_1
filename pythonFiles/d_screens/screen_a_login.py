@@ -1,7 +1,10 @@
 from kivy.uix.screenmanager import Screen
-#from pythonFiles.persistence.db_connection import DBConnection
-from pythonFiles.persistence.user_mapper import UserMapper
-from pythonFiles.text_inputs.a_textinput_standard import *
+#from pythonFiles.a_persistence.db_connection import DBConnection
+from pythonFiles.a_persistence.user_mapper import UserMapper
+from pythonFiles.g_text_inputs.a_textinput_standard import *
+from pythonFiles.e_layouts.rel_top_bar import *
+
+from pythonFiles.b_functions.a_screen_functions import *
 
 
 
@@ -13,9 +16,13 @@ class Login(Screen):
 
         self.username = TextInput_Standard(.5, .7, False, "Username")
         self.password = TextInput_Standard(.5, .5, True, "Password")
-
         self.add_widget(self.username)
         self.add_widget(self.password)
+
+
+        self.top_bar = Rel_TopBar("Login", False, False)
+        self.add_widget(self.top_bar)
+
 
 
     def login(self):
@@ -38,7 +45,15 @@ class Login(Screen):
         else:
             print("Something went wrong")
 
-    pass
+
+
+    def save_as_previous_screen(self):
+
+        save_screen_as_previous_screen("login")
+
+        pass
+
+
 
 
 

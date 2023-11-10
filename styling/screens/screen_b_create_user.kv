@@ -1,5 +1,8 @@
 <CreateUser>:
 
+    on_pre_leave:
+        root.save_as_previous_screen()
+
     RelativeLayout:
         id: create_user_box
         pos_hint: {"center_x": .5, "top": root.y_pos_of_create_user_box}
