@@ -15,7 +15,7 @@ class CreateUser(Screen):
     # Height of all text inputs in screen
     height_of_text_inputs = NumericProperty(0.06)
 
-    # Y position of create user button relative to elements above (the higher the Num.Prop. is the lower the button
+    # Y position of create user button relative to elements above (the higher the NumberProperty is the lower the button
     # is placed)
     y_pos_create_user_button = NumericProperty(.1)
 

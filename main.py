@@ -30,6 +30,8 @@ class myBudgetDevelopmentApp(App):
 
         myScreenManager.transition = NoTransition()
 
+        Window.clearcolor = (.9, .8, .8, 1)
+
         return myScreenManager
 
 

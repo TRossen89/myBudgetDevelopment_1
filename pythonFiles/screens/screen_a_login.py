@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 #from pythonFiles.persistence.db_connection import DBConnection
 from pythonFiles.persistence.user_mapper import UserMapper
-from pythonFiles.text_inputs.a_textinput_standard import TextInput_Standard
+from pythonFiles.text_inputs.a_textinput_standard import *
 
 
 
@@ -9,6 +9,7 @@ class Login(Screen):
 
     def __init__(self, **kwargs):
         super(Login, self).__init__(**kwargs)
+
 
         self.username = TextInput_Standard(.5, .7, False, "Username")
         self.password = TextInput_Standard(.5, .5, True, "Password")
@@ -19,24 +20,8 @@ class Login(Screen):
 
     def login(self):
 
-        #TextInput:
-         #   id: username
-          #  pos_hint: {"center_x": .5, "center_y":.7}
-           # size_hint: (.6, .07)
 
-        #TextInput:
-         #   id: password
-          #  pos_hint: {"center_x": .5, "center_y":.5}
-           # size_hint: (.6, .07)
-
-
-
-
-        #username = self.ids.username.text
-        #password = self.ids.password.text
-
-
-        loginStatus = UserMapper.login_request(self.username.get_text(), self.password.get_text())
+        loginStatus = UserMapper.login_request(self.username.text, self.password.text)
 
         if loginStatus == "connection_failed":
             print("Connection failed")
