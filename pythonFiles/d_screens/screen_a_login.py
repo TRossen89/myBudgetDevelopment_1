@@ -4,7 +4,9 @@ from pythonFiles.a_persistence.user_mapper import UserMapper
 from pythonFiles.g_text_inputs.a_textinput_standard import *
 from pythonFiles.e_layouts.rel_top_bar import *
 
-from pythonFiles.b_functions.a_screen_functions import *
+from pythonFiles.b_functions.b_screen_managing import *
+from pythonFiles.b_functions.a_app_language import *
+import json
 
 
 
@@ -14,15 +16,75 @@ class Login(Screen):
         super(Login, self).__init__(**kwargs)
 
 
-        self.username = TextInput_Standard(.5, .7, False, "Username")
-        self.password = TextInput_Standard(.5, .5, True, "Password")
+        self.app_language = get_app_language()
+
+        if self.app_language == "english":
+
+            self.top_bar = Rel_TopBar("Login", False, False)
+
+            self.username = TextInput_Standard(.5, .7, False, "Username")
+            self.password = TextInput_Standard(.5, .5, True, "Password")
+
+
+        elif self.app_language == "danish":
+
+            self.top_bar = Rel_TopBar("Login", False, False)
+
+            self.username = TextInput_Standard(.5, .7, False, "Brugernavn")
+            self.password = TextInput_Standard(.5, .5, True, "Kode")
+
+
+        self.add_widget(self.top_bar)
+
         self.add_widget(self.username)
         self.add_widget(self.password)
 
 
-        self.top_bar = Rel_TopBar("Login", False, False)
+    def refresh_screen(self):
+
+        self.app_language = get_app_language()
+
+        if self.app_language == "english":
+
+            self.top_bar = Rel_TopBar("Login", False, False)
+
+            self.username = TextInput_Standard(.5, .7, False, "Username")
+            self.password = TextInput_Standard(.5, .5, True, "Password")
+
+
+        elif self.app_language == "danish":
+
+            self.top_bar = Rel_TopBar("Login", False, False)
+
+            self.username = TextInput_Standard(.5, .7, False, "Brugernavn")
+            self.password = TextInput_Standard(.5, .5, True, "Kode")
+
         self.add_widget(self.top_bar)
 
+        self.add_widget(self.username)
+        self.add_widget(self.password)
+
+
+
+    def english_as_language(self):
+
+        language = "english"
+        set_app_language(language)
+
+        self.clear_widgets()
+        self.refresh_screen()
+
+        pass
+
+    def danish_as_language(self):
+
+        language = "danish"
+        set_app_language(language)
+
+        self.clear_widgets()
+        self.refresh_screen()
+
+        pass
 
 
     def login(self):

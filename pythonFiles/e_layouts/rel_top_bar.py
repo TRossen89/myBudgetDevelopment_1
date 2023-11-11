@@ -4,7 +4,7 @@ from kivy.uix.image import Image
 from kivy.uix.button import ButtonBehavior
 
 from pythonFiles.c_pop_ups.pop_b_burger_menu import Pop_BurgerMenu
-from pythonFiles.b_functions.a_screen_functions import *
+from pythonFiles.b_functions.b_screen_managing import *
 
 
 
