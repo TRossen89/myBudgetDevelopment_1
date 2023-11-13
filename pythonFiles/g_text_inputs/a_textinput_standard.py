@@ -1,6 +1,16 @@
 from kivy.uix.relativelayout import RelativeLayout
 from kivy.uix.textinput import TextInput
 
+
+def width_of_TextInput_Standard():
+
+    return .8
+
+def height_of_TextInput_Standard():
+
+    return .06
+
+
 class TextInput_Standard(TextInput):
 
     def __init__(self, pos_x, pos_y, password = False, placeholder ="", width = .8, height = .06):

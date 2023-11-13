@@ -1,12 +1,10 @@
 
 
-<Login>:
-
-    on_pre_leave:
-        root.save_as_previous_screen()
-
+<Login_MainFrame>:
 
     Button:
+        id: english_button
+
         pos_hint: {"center_x": .8, "top":.9}
         size_hint: (.1, .03)
         text: "English"
@@ -18,9 +16,11 @@
             root.english_as_language()
 
     Button:
+        id: danish_button
+
         pos_hint: {"center_x": .68, "top":.9}
         size_hint: (.1, .03)
-        text: "Danish"
+        text: "Dansk"
         font_size: 16
 
         color: (.8, .6, .8, 1)
@@ -31,6 +31,8 @@
 
 
     Button:
+        id: login_button
+
         pos_hint: {"center_x": .3, "center_y":.3}
         size_hint: (.38, .06)
         text: "Login"
@@ -42,15 +44,23 @@
             #app.root.current = "frontpage"
 
     RoundedButton:
+        id: create_user_button
         pos_hint: {"center_x": .7, "center_y":.3}
         size_hint: (.38, .06)
         text: "Create user"
         color: (.6, .3, .5)
-        #background_normal: ''
-        #background_color: (.8, .6, .8, 1)
-        #border: (15, 15, 15, 15)
+
         on_release:
             app.root.current = "create_user"
+
+
+
+
+<Login>:
+
+    on_pre_leave:
+        root.save_as_previous_screen()
+
 
 
 
