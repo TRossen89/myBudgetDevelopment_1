@@ -1,5 +1,7 @@
+import json
 import re
 from pythonFiles.a_persistence.db_connection import DBConnection
+from pythonFiles.b_functions.d_current_user import *
 
 class UserMapper:
 
@@ -25,7 +27,7 @@ class UserMapper:
             ################################################################################################################
 
             try:
-                sql_SELECT_Command = "SELECT username, password FROM mybudget_user WHERE username = %s AND password = %s"
+                sql_SELECT_Command = "SELECT id, username, password FROM mybudget_user WHERE username = %s AND password = %s"
                 allValues = (username, password)
                 myCursor.execute(sql_SELECT_Command, allValues)
                 print("Sql command executed")
@@ -36,6 +38,13 @@ class UserMapper:
 
                 if len(listWithUserdata) == 0:
                     return "credentials_failed"
+                else:
+
+                    listWithId = listWithUserdata[0]
+                    user_id = listWithId[0]
+
+                    set_current_user(user_id)
+
 
             except Exception:
                 return "select_command_failed"

@@ -1,15 +1,19 @@
 
+<Login>:
+
+    on_pre_leave:
+        root.save_as_previous_screen()
 
 <Login_MainFrame>:
 
     Button:
         id: english_button
 
-        pos_hint: {"center_x": .8, "top":.9}
-        size_hint: (.1, .03)
+        pos_hint: {"center_x": root.english_button_pos_center_x + root.language_buttons_move_to_the_right - root.language_buttons_move_to_the_left, "top": root.language_buttons_pos_top}
+        size_hint: (root.language_buttons_width, root.language_buttons_height)
         text: "English"
         font_size: 16
-        color: (.8, .6, .8, 1)
+        color: (1, 1, 1, 1)
         background_normal: ''
         background_color: (.2, .06, .1)
         on_release:
@@ -18,48 +22,123 @@
     Button:
         id: danish_button
 
-        pos_hint: {"center_x": .68, "top":.9}
-        size_hint: (.1, .03)
+        pos_hint: {"center_x": root.danish_button_pos_center_x  + root.language_buttons_move_to_the_right - root.language_buttons_move_to_the_left, "top": root.language_buttons_pos_top}
+        size_hint: (root.language_buttons_width, root.language_buttons_height)
         text: "Dansk"
         font_size: 16
 
-        color: (.8, .6, .8, 1)
+        color: (1, 1, 1, 1)
         background_normal: ''
         background_color: (.2, .06, .1)
         on_release:
             root.danish_as_language()
 
 
-    Button:
-        id: login_button
 
-        pos_hint: {"center_x": .3, "center_y":.3}
-        size_hint: (.38, .06)
-        text: "Login"
-        color: (.8, .6, .8, 1)
+
+    RoundedButtonGold:
+        id: why_make_a_budget_button
+
+        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.why_budget_button_pos_top + root.why_budget_and_trailer_buttons_move_up - root.why_budget_and_trailer_buttons_move_down}
+        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
+        text: "Why make a budget?"
+        color: (45/255, 46/255, 44/255, 1)
+        font_size: root.why_budget_and_trailer_buttons_font_size
+
+
+    RoundedButtonGold:
+        id: see_app_trailer_button
+
+        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.trailer_button_pos_top - root.why_budget_and_trailer_buttons_y_space_between + root.why_budget_and_trailer_buttons_move_up - root.why_budget_and_trailer_buttons_move_down}
+        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
+        text: "See app trailer"
+        color: (45/255, 46/255, 44/255, 1)
+        font_size: root.why_budget_and_trailer_buttons_font_size
+
+
+    RelativeLayout:
+        id: login_box_layout
+
+        pos_hint: {"center_x": root.login_box_layout_pos_center_x, "top": root.login_box_layout_pos_top}
+        size_hint: (root.login_box_layout_width, root.login_box_layout_height)
+
+        #background_color: (.2, .16, .14, .4)
         background_normal: ''
-        background_color: (.2, .06, .1)
-        on_release:
-            root.login()
-            #app.root.current = "frontpage"
+        canvas:
+            Color:
+                rgba: (.2, .16, .14, .4)
+            RoundedRectangle:
+                size: self.size
+                radius: [10]
 
-    RoundedButton:
-        id: create_user_button
-        pos_hint: {"center_x": .7, "center_y":.3}
-        size_hint: (.38, .06)
-        text: "Create user"
-        color: (.6, .3, .5)
-
-        on_release:
-            app.root.current = "create_user"
-
-
+        Label:
+            id: login_label
+            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.login_label_pos_top}
+            size_hint: (root.login_label_width, root.login_label_height)
+            text: "Login"
+            font_size: root.login_label_font_size
+            color: (0, 0, 0, 1)
 
 
-<Login>:
+        Label:
+            id: enter_username_label
+            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.username_text_input_pos_top + root.username_password_text_inputs_height}
+            size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
+            text: "Enter username:"
+            color: (0, 0, 0, 1)
 
-    on_pre_leave:
-        root.save_as_previous_screen()
+
+        Label:
+            id: enter_password_label
+            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.password_text_input_pos_top + root.username_password_text_inputs_height}
+            size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
+            text: "Enter password:"
+            color: (0, 0, 0, 1)
+
+
+        RoundedButtonGreen:
+            id: login_button
+
+            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.login_button_pos_top + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+            size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
+            text: "Login"
+            color: (45/255, 46/255, 44/255, 1)
+            font_size: root.login_and_create_user_buttons_font_size
+
+            #background_normal: ''
+            #background_color: (.2, .06, .1)
+            on_release:
+                root.login()
+                #app.root.current = "frontpage"
+
+
+        Label:
+            id: or_label
+            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.or_label_pos_top - root.login_and_create_user_buttons_y_space_between + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+            size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
+
+            text: "or"
+
+            color: (0, 0, 0, 1)
+            font_size: root.login_and_create_user_buttons_font_size - 6
+
+
+
+        RoundedButtonWhite:
+            id: create_user_button
+            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.create_user_button_pos_top - (2*root.login_and_create_user_buttons_y_space_between) + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+            size_hint: (root.create_user_button_width, root.login_and_create_user_buttons_height)
+            text: "Create user"
+            color: (.6, .3, .5)
+            font_size: root.login_and_create_user_buttons_font_size
+
+            on_release:
+                app.root.current = "create_user"
+
+
+
+
+
 
 
 
