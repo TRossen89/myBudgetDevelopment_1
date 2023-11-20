@@ -4,8 +4,9 @@ from kivy.uix.screenmanager import Screen
 #from pythonFiles.a_persistence.db_connection import DBConnection
 from pythonFiles.a_persistence.user_mapper import UserMapper
 from pythonFiles.b_functions.c_refreshing_screens import *
-from pythonFiles.g_text_inputs.a_textinput_standard import *
-from pythonFiles.e_layouts.rel_top_bar import *
+from pythonFiles.c_pop_ups.pop_a_message import Pop_Message
+from pythonFiles.g_text_inputs.text_input_a_standard import *
+from pythonFiles.e_layouts.rel_a_top_bar import *
 
 from pythonFiles.b_functions.b_screen_managing import *
 from pythonFiles.b_functions.a_app_language import *
@@ -55,6 +56,7 @@ class Login_MainFrame(RelativeLayout):
 
 
     # -- BIG BUTTONS
+
     #all_big_buttons_height = .06
 
     #
@@ -116,24 +118,37 @@ class Login_MainFrame(RelativeLayout):
     or_label_pos_top = .24
 
 
-
-
-
-
-
-
-
-
-
-
-
     def __init__(self, **kwargs):
         super(Login_MainFrame, self).__init__(**kwargs)
 
-
-        self.id = "login_main_frame"
+        # TODO: Remove this. It's there to remind me to check if you can set the id of a layout like it's done here
+        #self.id = "login_main_frame"
 
         self.refresh_layout()
+
+
+    def english_as_language(self):
+
+        language = "english"
+        set_app_language(language)
+
+        self.refresh_layout()
+
+        refresh_all_screens()
+
+        pass
+
+
+
+    def danish_as_language(self):
+
+        language = "danish"
+        set_app_language(language)
+        self.refresh_layout()
+
+        refresh_all_screens()
+
+        pass
 
 
     def refresh_layout(self):
@@ -197,51 +212,72 @@ class Login_MainFrame(RelativeLayout):
 
 
 
-    def english_as_language(self):
-
-        language = "english"
-        set_app_language(language)
-
-        self.refresh_layout()
-
-        refresh_all_screens()
-
-        pass
-
-
-
-    def danish_as_language(self):
-
-        language = "danish"
-        set_app_language(language)
-        self.refresh_layout()
-
-        refresh_all_screens()
-
-        pass
-
-
-
     def login(self):
+
+        app_language = get_app_language()
+
+        if app_language == "english":
+
+            title_connection_error = "Connection error"
+            message_connection_error = "MyBudget couldn't connect\n" \
+                      "to the database"
+
+            title_sql_SELECT_error = "Conncetion error"
+            message_sql_SELECT_error = "Something went wrong with the\n" \
+                                     "connection to the database"
+
+            title_credentials = "Credentials error"
+            message_credentials = "You've entered af wrong\n username or password"
+
+
+        elif app_language == "danish":
+
+            title_connection_error = "Fejl med forbindelsen"
+            message_connection_error = "MyBudget kunne ikke forbinde\n" \
+                      "til databasen"
+
+            title_sql_SELECT_error = "Fejl med forbindelsen"
+            message_sql_SELECT_error = "Noget gik galt med forbindelsen\n" \
+                                       "til databasen"
+
+            title_credentials = "Login-fejl"
+            message_credentials = "Du har indtastet et forkert\nbrugernavn eller kodeord"
 
 
         loginStatus = UserMapper.login_request(self.username.text, self.password.text)
 
+
         if loginStatus == "connection_failed":
+
+            pop_up_message_1 = Pop_Message(title_connection_error, message_connection_error)
+            pop_up_message_1.open()
+
             print("Connection failed")
 
         elif loginStatus == "select_command_failed":
+
+            pop_up_message_2 = Pop_Message(title_sql_SELECT_error, message_sql_SELECT_error)
+            pop_up_message_2.open()
             print("Select command failed")
 
         elif loginStatus == "credentials_failed":
+
+            pop_up_message_3 = Pop_Message(title_credentials, message_credentials)
+            pop_up_message_3.open()
             print("Credentials failed")
 
         elif loginStatus == "succes":
+            App.get_running_app().root.get_screen("frontpage").refresh_screen()
             App.get_running_app().root.get_screen("login").manager.current = 'frontpage'
 
         else:
             print("Something went wrong")
 
+
+    # ############ Is this necessary? ############################################
+    # TODO: Figure out if it's necessary to save frontpage as previous screen when the user is logging in
+    save_screen_as_previous_screen("frontpage")
+    ##############################################################################
     pass
 
 

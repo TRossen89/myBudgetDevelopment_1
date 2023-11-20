@@ -5,8 +5,8 @@ from pythonFiles.a_persistence.user_mapper import UserMapper
 from pythonFiles.b_functions.a_app_language import *
 from pythonFiles.b_functions.c_refreshing_screens import *
 from pythonFiles.c_pop_ups.pop_a_message import Pop_Message
-from pythonFiles.e_layouts.rel_top_bar import *
-from pythonFiles.g_text_inputs.a_textinput_standard import *
+from pythonFiles.e_layouts.rel_a_top_bar import *
+from pythonFiles.g_text_inputs.text_input_a_standard import *
 
 
 
@@ -136,6 +136,7 @@ class CreateUser_MainFrame(RelativeLayout):
 
         self.add_widget(self.top_bar)
 
+
         self.ids.create_user_box.add_widget(self.username)
         self.ids.password_box.add_widget(self.password_1)
         self.ids.password_box.add_widget(self.password_2)
@@ -158,7 +159,9 @@ class CreateUser_MainFrame(RelativeLayout):
                                            CreateUser_MainFrame.width_TextInput_Standard
                                            / CreateUser_MainFrame.width_of_create_user_box,
                                            CreateUser_MainFrame.height_TextInput_Standard
-                                           / CreateUser_MainFrame.height_of_create_user_box)
+                                           / CreateUser_MainFrame.height_of_create_user_box, True)
+
+
 
         self.ids.enter_password_label_1.text = password_1_label
 
@@ -194,6 +197,17 @@ class CreateUser_MainFrame(RelativeLayout):
 
 
 
+    def on_text_username_checking_if_username_exists(self, instance):
+
+        print("Function is triggered")
+        username_to_check = self.username.text
+        username_in_db = UserMapper.is_username_in_db(username_to_check)
+
+        if username_in_db == "no_username":
+            pass
+        else:
+            self.username.foreground_color = (1, .2, .2, 1)
+
 
 
     def create_user(self):
@@ -202,11 +216,35 @@ class CreateUser_MainFrame(RelativeLayout):
         created_password_1 = self.password_1.text
         created_password_2 = self.password_2.text
 
+        self.app_language = get_app_language()
 
-        if (created_password_1 != created_password_2):
+        if self.app_language == "english":
 
             pop_up_title = "Passwords not identical"
             pop_up_message = "Your entered passwords \naren't identical"
+
+            pop_up_title_2 = "Connection failed"
+            pop_up_message_2 = "You have no internet connection. You\nneed internet connection to create a user"
+
+            pop_up_title_3 = "Username already in use"
+            pop_up_message_3 = "The username you've chosen is already in use.\nPick another username"
+
+
+        elif self.app_language == "danish":
+
+            pop_up_title = "Kodeordene er ikke identiske"
+            pop_up_message = "Dine indtastede kodeord \ner ikke ens"
+
+            pop_up_title_2 = "Databaseforbindelsen fejlede"
+            pop_up_message_2 = "Du har ikke internetforbindelse.\nDet kræver internetforbindelse at oprette \n" \
+                               "en bruger og for at appen fungerer"
+
+            pop_up_title_3 = "Brugernavn findes allerede"
+            pop_up_message_3 = "Det valgte brugernavn er allerede i brug.\nVælg et andet brugernavn"
+
+
+
+        if (created_password_1 != created_password_2):
 
             pop_up = Pop_Message(pop_up_title, pop_up_message)
             pop_up.open()
@@ -217,14 +255,14 @@ class CreateUser_MainFrame(RelativeLayout):
 
             if create_user_status == "connection_failed":
 
-                pop_up_title_2 = "Connection failed"
-                pop_up_message_2 = "You have no internet connection. You\nneed internet connection to create a user"
-
                 pop_up_2 = Pop_Message(pop_up_title_2, pop_up_message_2)
                 pop_up_2.open()
 
 
             elif create_user_status == "username_exists":
+
+                pop_up_3 = Pop_Message(pop_up_title_3, pop_up_message_3)
+                pop_up_3.open()
                 print("Username already exists. Try again with another username")
 
             elif create_user_status == "insert_command_failed":

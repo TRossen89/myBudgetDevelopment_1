@@ -1,22 +1,27 @@
 import json
 
 
-def set_current_user(user_id):
+def set_current_user(user):
 
-    filename = "jsonFiles/current_user_id.json"
+    list_with_user_information = []
+
+    for ui in user:
+        list_with_user_information.append(ui)
+
+    filename = "jsonFiles/current_user.json"
 
     with open(filename, "w") as fileobject:
-        json.dump(user_id, fileobject)
+        json.dump(list_with_user_information, fileobject)
 
 
 def get_current_user():
 
-    filename = "jsonFiles/current_user_id.json"
+    filename = "jsonFiles/current_user.json"
 
     with open(filename, "r") as fileobject:
-        user_id = json.load(fileobject)
+        user = json.load(fileobject)
 
-    return user_id
+    return user
 
 
 

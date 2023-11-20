@@ -40,10 +40,9 @@ class UserMapper:
                     return "credentials_failed"
                 else:
 
-                    listWithId = listWithUserdata[0]
-                    user_id = listWithId[0]
+                    tupleWithUserdata = listWithUserdata[0]
 
-                    set_current_user(user_id)
+                    set_current_user(tupleWithUserdata)
 
 
             except Exception:
@@ -89,4 +88,39 @@ class UserMapper:
                 print("DB is closed")
 
         return "succes"
+
+
+
+    @classmethod
+    def is_username_in_db(cls, username):
+
+        try:
+            myCursor = DBConnection.connect_to_DB()
+
+            try:
+                print("Select command:")
+                sql_SELECT_Command = "SELECT username FROM mybudget_user WHERE username = %s"
+                allValues = (username,)
+                myCursor.execute(sql_SELECT_Command, allValues)
+                print("Sql command executed")
+                listWithUserdata = myCursor.fetchall()
+
+                print("Data fetched (see data below): ")
+                print(listWithUserdata)
+                print(len(listWithUserdata))
+
+                if len(listWithUserdata) == 0:
+                    return "no_username"
+
+            except Exception:
+                return "no_username"
+
+            finally:
+                print("Committing to and closing DB")
+                DBConnection.commit_and_close_DB()
+                print("DB is closed")
+        except:
+            print("connection failed")
+            return "connection_failed"
+
 
