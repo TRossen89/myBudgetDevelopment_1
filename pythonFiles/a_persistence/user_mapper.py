@@ -1,4 +1,3 @@
-import json
 import re
 from pythonFiles.a_persistence.db_connection import DBConnection
 from pythonFiles.b_functions.d_current_user import *
@@ -31,18 +30,24 @@ class UserMapper:
                 allValues = (username, password)
                 myCursor.execute(sql_SELECT_Command, allValues)
                 print("Sql command executed")
-                listWithUserdata = myCursor.fetchall()
+                list_with_tuple_with_userdata = myCursor.fetchall()
 
                 print("Data fetched (see data below): ")
-                print(listWithUserdata)
+                print(list_with_tuple_with_userdata)
 
-                if len(listWithUserdata) == 0:
+                if len(list_with_tuple_with_userdata) == 0:
                     return "credentials_failed"
                 else:
 
-                    tupleWithUserdata = listWithUserdata[0]
+                    tuple_with_user_data = list_with_tuple_with_userdata[0]
 
-                    set_current_user(tupleWithUserdata)
+                    list_with_user_data = []
+
+                    for ui in tuple_with_user_data:
+                        list_with_user_data.append(ui)
+
+
+                    set_current_user(list_with_user_data)
 
 
             except Exception:

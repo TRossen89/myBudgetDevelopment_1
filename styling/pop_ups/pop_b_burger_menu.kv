@@ -2,10 +2,10 @@
 <Pop_BurgerMenu>:
 
     title: "myBudget"
-    title_size: "12"
+    title_size: root.font_size_of_title
 
     title_align: "center"
-    size_hint: (.5, .5)
+    size_hint: (.6, .7)
     pos_hint: {"x":.4, "top": .9}
     title_color: (0, 0, 0, 1)
     separator_color: (0, 0, 0, 1)
@@ -14,23 +14,21 @@
     background: "resources/images/burger_menu_BACKGROUND.png"
 
     RelativeLayout:
-        #orientation: "vertical"
 
         background_color: (1, 1, 1, 1)
-
 
         Button:
 
             text: "Create Budget"
 
-            font_size: 22
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
             pos_hint: {'center_x': .5, "top": 1}
 
             on_release:
-                app.root.current = "screen_B"
+                #app.root.current = "screen_B"
                 root.dismiss()
 
 
@@ -39,65 +37,65 @@
 
             text: "Your Budgets"
 
-            font_size: 12
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .86}
+            pos_hint: {'center_x': .5, "top": 1 - (1*root.y_space_from_button_top_to_button_top)}
 
             on_release:
-                app.root.current = "screen_H"
+                #app.root.current = "screen_H"
                 root.dismiss()
 
 
         Button:
 
-            text: "Advices"
+            text: "Advices and Financial Guidance"
 
-            font_size: 12
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .72}
+            pos_hint: {'center_x': .5, "top": 1 - (2*root.y_space_from_button_top_to_button_top)}
 
             on_release:
                 root.dismiss()
-
-
-        Button:
-
-            text: "Why Make A Budget?"
-
-            font_size: 12
-            color: (0, 0, 0, 1)
-            size_hint: (1, .14)
-            background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .58}
 
 
         Button:
 
             text: "How To Make Money"
 
-            font_size: 12
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .44}
-
-            on_release:
-                root.dismiss()
+            pos_hint: {'center_x': .5, "top": 1 - (3*root.y_space_from_button_top_to_button_top)}
 
 
         Button:
 
             text: "Learn The App"
 
-            font_size: 12
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .3}
+            pos_hint: {'center_x': .5, "top": 1 - (4*root.y_space_from_button_top_to_button_top)}
+
+            on_release:
+                root.dismiss()
+
+
+        Button:
+
+            text: "Settings"
+
+            font_size: root.font_size_of_buttons
+            color: (0, 0, 0, 1)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
+            background_color: (1, 1, 1, 0)
+            pos_hint: {'center_x': .5, "top": 1 - (5*root.y_space_from_button_top_to_button_top)}
 
             on_release:
                 root.dismiss()
@@ -106,13 +104,27 @@
 
         Button:
 
-            text: "Settings"
+            text: "Your Account"
 
-            font_size: 12
+            font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (1, .14)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
-            pos_hint: {'center_x': .5, "top": .16}
+            pos_hint: {'center_x': .5, "top": 1 - (6*root.y_space_from_button_top_to_button_top)}
 
             on_release:
+                root.dismiss()
+
+        Button:
+
+            text: "Log out"
+
+            font_size: root.font_size_of_buttons
+            color: (0, 0, 0, 1)
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
+            background_color: (1, 1, 1, 0)
+            pos_hint: {'center_x': .5, "top": 1 - (7*root.y_space_from_button_top_to_button_top)}
+
+            on_release:
+                root.popup_logout()
                 root.dismiss()

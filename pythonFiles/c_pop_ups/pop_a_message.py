@@ -1,4 +1,4 @@
-from kivy.properties import StringProperty
+
 from kivy.uix.popup import Popup
 
 

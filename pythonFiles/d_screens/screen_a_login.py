@@ -1,21 +1,20 @@
 from kivy.app import App
-
+from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
 #from pythonFiles.a_persistence.db_connection import DBConnection
 from pythonFiles.a_persistence.user_mapper import UserMapper
-from pythonFiles.b_functions.c_refreshing_screens import *
+
 from pythonFiles.c_pop_ups.pop_a_message import Pop_Message
 from pythonFiles.g_text_inputs.text_input_a_standard import *
 from pythonFiles.e_layouts.rel_a_top_bar import *
 
-from pythonFiles.b_functions.b_screen_managing import *
+from pythonFiles.b_functions.b_screens import *
 from pythonFiles.b_functions.a_app_language import *
 from pythonFiles.b_functions.d_current_user import *
 
 
 
 class Login(Screen):
-
 
 
     def __init__(self, **kwargs):
@@ -95,6 +94,8 @@ class Login_MainFrame(RelativeLayout):
 
     username_password_text_inputs_pos_center_x = .5
 
+    y_space_between_forgot_password_and_password_text_input = .002
+
     # Username text input top controls top of password text input (and labels connected to the two text inputs)
     username_text_input_pos_top = .76
 
@@ -106,7 +107,9 @@ class Login_MainFrame(RelativeLayout):
     login_and_create_user_buttons_y_space_between = .04
     login_and_create_user_buttons_move_up = .2
     login_and_create_user_buttons_move_down = .14
-    login_and_create_user_buttons_font_size = 35
+
+
+    login_and_create_user_buttons_font_size = 38
 
     login_button_width = .35/login_box_layout_width
     create_user_button_width = .6/login_box_layout_width
@@ -125,6 +128,7 @@ class Login_MainFrame(RelativeLayout):
         #self.id = "login_main_frame"
 
         self.refresh_layout()
+
 
 
     def english_as_language(self):
@@ -157,6 +161,9 @@ class Login_MainFrame(RelativeLayout):
 
         if self.app_language == "english":
 
+            self.popup_forgot_password_title = "Reset password"
+            self.popup_forgot_password_message = "Do you want to reset your password?"
+
             self.top_bar = Rel_TopBar("Login", False, False)
 
             self.ids.why_make_a_budget_button.text = "Why Make A Budget?"
@@ -175,6 +182,9 @@ class Login_MainFrame(RelativeLayout):
                                                Login_MainFrame.username_password_text_inputs_width,
                                                Login_MainFrame.username_password_text_inputs_height)
 
+            #self.ids.forgot_password_label.text = "[ref=forgot password]Forgot password[/ref]"
+            self.ids.forgot_password_button.text = "Forgot password"
+
             self.ids.create_user_button.text = "Create User"
             self.ids.or_label.text = "or"
             self.ids.login_button.text = "Log in"
@@ -183,6 +193,10 @@ class Login_MainFrame(RelativeLayout):
         elif self.app_language == "danish":
 
             self.top_bar = Rel_TopBar("Login", False, False)
+
+            self.popup_forgot_password_title = "Nulstil kodeord"
+            self.popup_forgot_password_message = "Indtast din mail, så sender vi et link," \
+                                                 "\nhvor du kan nulstille dit kodeord"
 
             self.ids.why_make_a_budget_button.text = "Hvorfor lave et budget?"
             self.ids.see_app_trailer_button.text = "Se app trailer"
@@ -200,6 +214,8 @@ class Login_MainFrame(RelativeLayout):
                                                Login_MainFrame.username_password_text_inputs_width,
                                                Login_MainFrame.username_password_text_inputs_height)
 
+            #self.ids.forgot_password_label.text = "[ref=glemt kodeord]Glemt kodeord[/ref]"
+            self.ids.forgot_password_button.text = "Glemt kodeord"
 
             self.ids.create_user_button.text = "Opret bruger"
             self.ids.or_label.text = "eller"
@@ -218,6 +234,8 @@ class Login_MainFrame(RelativeLayout):
 
         if app_language == "english":
 
+
+
             title_connection_error = "Connection error"
             message_connection_error = "MyBudget couldn't connect\n" \
                       "to the database"
@@ -230,7 +248,10 @@ class Login_MainFrame(RelativeLayout):
             message_credentials = "You've entered af wrong\n username or password"
 
 
+
         elif app_language == "danish":
+
+
 
             title_connection_error = "Fejl med forbindelsen"
             message_connection_error = "MyBudget kunne ikke forbinde\n" \
@@ -281,3 +302,12 @@ class Login_MainFrame(RelativeLayout):
     pass
 
 
+    def reset_password_popup(self):
+
+        popup_reset_password = Pop_Message(self.popup_forgot_password_title, self.popup_forgot_password_message)
+        popup_reset_password.open()
+
+        self.ids.forgot_password_button.color = (0, 0, 0, 1)
+
+    def on_press_color(self):
+        self.ids.forgot_password_button.color = (.1, .1, 1, 1)

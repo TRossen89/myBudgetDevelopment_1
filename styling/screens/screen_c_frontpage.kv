@@ -65,7 +65,8 @@
 
         Button:
 
-            text: "??????"
+            id: learn_the_app_button
+            text: "Learn The App"
 
             pos_hint: {"center_x": .5, "top":1 - (4*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
             size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
@@ -76,7 +77,8 @@
 
         Button:
 
-            text: "How To Start Your Own Business"
+            id: settings_button
+            text: "Settings"
 
             pos_hint: {"center_x": .5, "top":1 - (5*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
             size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
@@ -84,10 +86,13 @@
             color: (.8, .6, .8, 1)
             background_color: (.6, .3, .5)
 
+            on_release:
+                app.root.current = "settings_mb"
+
 
         Button:
-            id: learn_the_app_button
-            text: "Learn The App"
+            id: your_account_button
+            text: "Your Account"
 
             pos_hint: {"center_x": .5, "top": 1 - (6*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
             size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
@@ -98,8 +103,8 @@
 
 
         Button:
-            id: settings_button
-            text: "Settings"
+            id: logout_button
+            text: "Log out"
 
             pos_hint: {"center_x": .5, "top": 1 - (7*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
             size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
@@ -107,13 +112,16 @@
             color: (.8, .6, .8, 1)
             background_color: (.6, .3, .5)
 
-        Button:
-            id: your_account_button
-            text: "Your Account"
+            on_release:
+                root.logout()
 
-            pos_hint: {"center_x": .5, "top": 1 - (8*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
-            size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
+        #Button:
+         #   id: your_account_button
+          #  text: "Your Account"
 
-            color: (.8, .6, .8, 1)
-            background_color: (.6, .3, .5)
+           # pos_hint: {"center_x": .5, "top": 1 - (8*(root.height_of_all_buttons+root.y_space_between_all_buttons))}
+            #size_hint: (root.width_of_all_buttons, root.height_of_all_buttons)
+
+            #color: (.8, .6, .8, 1)
+            #background_color: (.6, .3, .5)
 

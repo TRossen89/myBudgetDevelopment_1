@@ -1,12 +1,13 @@
-from kivy.app import App
+
 from kivy.uix.screenmanager import Screen
-from kivy.uix.screenmanager import NumericProperty
-from pythonFiles.a_persistence.user_mapper import UserMapper
+
 from pythonFiles.b_functions.a_app_language import *
-from pythonFiles.b_functions.c_refreshing_screens import *
+from pythonFiles.b_functions.b_screens import *
 from pythonFiles.c_pop_ups.pop_a_message import Pop_Message
 from pythonFiles.e_layouts.rel_a_top_bar import *
 from pythonFiles.g_text_inputs.text_input_a_standard import *
+from pythonFiles.f_buttons.button_b_choose_languages import Button_ChooseLanguage
+
 
 
 
@@ -22,7 +23,10 @@ class CreateUser(Screen):
 
 
     def refresh_screen(self):
+
         self.clear_widgets()
+
+        self.main_frame_layout.refresh_layout()
         self.add_widget(self.main_frame_layout)
 
 
@@ -44,8 +48,19 @@ class CreateUser_MainFrame(RelativeLayout):
     #######################################
     # -- ELEMENTS:
 
-    # Top label
-    #y_pos_of_top_label = NumericProperty(.9)
+    x_pos_choose_language_buttons = .1
+    x_space_between_language_buttons = .02
+
+    # This should match with the width in the python module
+    # button_a_choose_language.py if it's not entered as parameter
+    # when the button is instantiated
+    width_of_language_buttons = .1
+
+    x_pos_danish_button = .5 + x_pos_choose_language_buttons
+
+    x_pos_english_button = .5 + width_of_language_buttons + x_pos_choose_language_buttons + x_space_between_language_buttons
+
+    # The enter_username_label:
     y_pos_of_top_label = .9
 
     # Height of all text inputs in screen
@@ -97,27 +112,6 @@ class CreateUser_MainFrame(RelativeLayout):
 
     pass
 
-    def english_as_language(self):
-
-        language = "english"
-        set_app_language(language)
-
-        refresh_all_screens()
-
-        pass
-
-
-
-    def danish_as_language(self):
-
-        language = "danish"
-        set_app_language(language)
-
-        refresh_all_screens()
-
-        pass
-
-
 
 
     def refresh_layout(self):
@@ -136,6 +130,11 @@ class CreateUser_MainFrame(RelativeLayout):
 
         self.add_widget(self.top_bar)
 
+        self.danish_button = Button_ChooseLanguage("danish", CreateUser_MainFrame.x_pos_danish_button)
+        self.english_button = Button_ChooseLanguage("english", CreateUser_MainFrame.x_pos_english_button)
+
+        self.add_widget(self.danish_button)
+        self.add_widget(self.english_button)
 
         self.ids.create_user_box.add_widget(self.username)
         self.ids.password_box.add_widget(self.password_1)

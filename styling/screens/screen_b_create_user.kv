@@ -6,36 +6,6 @@
 
 <CreateUser_MainFrame>:
 
-
-    Button:
-        id: english_button
-
-        pos_hint: {"center_x": .8, "top":.94}
-        size_hint: (.1, .03)
-        text: "English"
-        font_size: 16
-        color: (.8, .6, .8, 1)
-        background_normal: ''
-        background_color: (.2, .06, .1)
-        on_release:
-            root.english_as_language()
-
-    Button:
-        id: danish_button
-
-        pos_hint: {"center_x": .68, "top":.94}
-        size_hint: (.1, .03)
-        text: "Dansk"
-        font_size: 16
-
-        color: (.8, .6, .8, 1)
-        background_normal: ''
-        background_color: (.2, .06, .1)
-        on_release:
-            root.danish_as_language()
-
-
-
     RelativeLayout:
         id: create_user_box
         pos_hint: {"center_x": .5, "top": root.y_pos_of_create_user_box}

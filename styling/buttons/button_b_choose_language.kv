@@ -1,0 +1,23 @@
+
+
+<Button_ChooseLanguage>:
+    id: choose_language
+
+    color: (1, 1, 1, 1)
+
+    text:""
+    background_color: (0, 0, 0, 0)
+    background_normal: ''
+
+    on_release:
+        if self.language == "english": root.english_as_language()
+        if self.language == "danish": root.danish_as_language()
+
+    canvas.before:
+
+        Color:
+            rgba: (60/255, 12/255, 22/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [5]
