@@ -9,27 +9,32 @@
     Button:
         id: english_button
 
-        pos_hint: {"center_x": root.english_button_pos_center_x + root.language_buttons_move_to_the_right - root.language_buttons_move_to_the_left, "top": root.language_buttons_pos_top}
-        size_hint: (root.language_buttons_width, root.language_buttons_height)
         text: "English"
-        font_size: 16
         color: (1, 1, 1, 1)
+        font_size: root.language_buttons_font_size
+
         background_normal: ''
         background_color: (.2, .06, .1)
+
+        pos_hint: {"center_x": root.english_button_pos_center_x, "top": root.language_buttons_pos_top}
+        size_hint: (root.language_buttons_width, root.language_buttons_height)
+
         on_release:
             root.english_as_language()
 
     Button:
         id: danish_button
 
-        pos_hint: {"center_x": root.danish_button_pos_center_x  + root.language_buttons_move_to_the_right - root.language_buttons_move_to_the_left, "top": root.language_buttons_pos_top}
-        size_hint: (root.language_buttons_width, root.language_buttons_height)
         text: "Dansk"
-        font_size: 16
-
         color: (1, 1, 1, 1)
+        font_size: root.language_buttons_font_size
+
         background_normal: ''
         background_color: (.2, .06, .1)
+
+        size_hint: (root.language_buttons_width, root.language_buttons_height)
+        pos_hint: {"center_x": root.danish_button_pos_center_x, "top": root.language_buttons_pos_top}
+
         on_release:
             root.danish_as_language()
 
@@ -39,21 +44,31 @@
     RoundedButtonGold:
         id: why_make_a_budget_button
 
-        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.why_budget_button_pos_top + root.why_budget_and_trailer_buttons_move_up - root.why_budget_and_trailer_buttons_move_down}
-        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
         text: "Why make a budget?"
         color: (45/255, 46/255, 44/255, 1)
         font_size: root.why_budget_and_trailer_buttons_font_size
+
+        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
+        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.why_budget_button_pos_top}
+        #Row
+        #pos_hint: {"center_x": root.why_budget_button_pos_center_x, "top": root.why_budget_and_trailer_buttons_pos_top}
+
+
+
+
 
 
     RoundedButtonGold:
         id: see_app_trailer_button
 
-        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.trailer_button_pos_top - root.why_budget_and_trailer_buttons_y_space_between + root.why_budget_and_trailer_buttons_move_up - root.why_budget_and_trailer_buttons_move_down}
-        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
         text: "See app trailer"
         color: (45/255, 46/255, 44/255, 1)
         font_size: root.why_budget_and_trailer_buttons_font_size
+
+        size_hint: (root.why_budget_and_trailer_buttons_width, root.why_budget_and_trailer_buttons_height)
+        pos_hint: {"center_x": root.why_budget_and_trailer_buttons_pos_center_x, "top": root.trailer_button_pos_top}
+        #Row
+        #pos_hint: {"center_x": root.trailer_button_pos_center_x, "top": root.why_budget_and_trailer_buttons_pos_top}
 
 
     RelativeLayout:
@@ -71,94 +86,112 @@
                 size: self.size
                 radius: [10]
 
-        Label:
-            id: login_label
-            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.login_label_pos_top}
-            size_hint: (root.login_label_width, root.login_label_height)
-            text: "Login"
-            font_size: root.login_label_font_size
-            color: (0, 0, 0, 1)
+    Label:
+        id: login_label
 
-
-        Label:
-            id: enter_username_label
-            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.username_text_input_pos_top + root.username_password_text_inputs_height}
-            size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
-            text: "Enter username:"
-            color: (0, 0, 0, 1)
-
-
-        Label:
-            id: enter_password_label
-            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.password_text_input_pos_top + root.username_password_text_inputs_height}
-            size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
-            text: "Enter password:"
-            color: (0, 0, 0, 1)
+        text: "Login"
+        color: (0, 0, 0, 1)
+        font_size: root.login_label_font_size
 
 
 
-        Button:
-            #id: forgot_password_label
-            id: forgot_password_button
-            pos_hint: {"center_x": root.username_password_text_inputs_pos_center_x, "top": root.password_text_input_pos_top - root.username_password_text_inputs_height - root.y_space_between_forgot_password_and_password_text_input}
-            size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
-            text: "Forgot my password"
-            background_color: (0, 0, 0, 0)
-            color: (0, 0, 0, 1)
-            font_size: 22
+        size_hint: (root.login_label_width, root.login_label_height)
+        pos_hint: {"center_x": root.login_label_pos_center_x, "top": root.login_label_pos_top}
 
-            underline: True
-            #markup: True
-            #on_ref_press:
 
-            on_press:
-                root.on_press_color()
+    Label:
+        id: enter_username_label
 
-            on_release:
-                root.reset_password_popup()
+        text: "Enter username:"
+        color: (0, 0, 0, 1)
+        text_size: self.size
+        halign: "left"
+        valign: "center"
+
+        size_hint: (root.username_password_labels_width, root.username_password_labels_height)
+        pos_hint: {"center_x": root.username_password_labels_and_text_inputs_pos_center_x, "top": root.username_label_pos_top}
+
+
+
+    Label:
+        id: enter_password_label
+
+        text: "Enter password:"
+        color: (0, 0, 0, 1)
+
+        text_size: self.size
+        halign: "left"
+        valign: "center"
+
+        size_hint: (root.username_password_labels_width, root.username_password_labels_height)
+        pos_hint: {"center_x": root.username_password_labels_and_text_inputs_pos_center_x, "top": root.password_label_pos_top}
 
 
 
 
 
-        RoundedButtonGreen:
-            id: login_button
+    Button:
+        #id: forgot_password_label
+        id: forgot_password_button
+        pos_hint: {"center_x": root.username_password_labels_and_text_inputs_pos_center_x, "top": root.forgot_password_button_pos_top}
+        size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
+        text: "Forgot my password"
+        background_color: (0, 0, 0, 0)
+        color: (0, 0, 0, 1)
+        font_size: 22
 
-            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.login_button_pos_top + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-            size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
-            text: "Login"
-            color: (45/255, 46/255, 44/255, 1)
-            font_size: root.login_and_create_user_buttons_font_size
+        underline: True
+        #markup: True
+        #on_ref_press:
 
-            #background_normal: ''
-            #background_color: (.2, .06, .1)
-            on_release:
-                root.login()
+        on_press:
+            root.on_press_color()
 
-
-
-        Label:
-            id: or_label
-            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.or_label_pos_top - root.login_and_create_user_buttons_y_space_between + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-            size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
-
-            text: "or"
-
-            color: (0, 0, 0, 1)
-            font_size: root.login_and_create_user_buttons_font_size - 6
+        on_release:
+            root.reset_password_popup()
 
 
 
-        RoundedButtonWhite:
-            id: create_user_button
-            pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.create_user_button_pos_top - (2*root.login_and_create_user_buttons_y_space_between) + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-            size_hint: (root.create_user_button_width, root.login_and_create_user_buttons_height)
-            text: "Create user"
-            color: (.6, .3, .5)
-            font_size: root.login_and_create_user_buttons_font_size
 
-            on_release:
-                app.root.current = "create_user"
+
+    RoundedButtonGreen:
+        id: login_button
+
+        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.login_button_pos_top + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+        size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
+        text: "Login"
+        color: (45/255, 46/255, 44/255, 1)
+        font_size: root.login_and_create_user_buttons_font_size
+
+        #background_normal: ''
+        #background_color: (.2, .06, .1)
+        on_release:
+            root.login()
+
+
+
+    Label:
+        id: or_label
+        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.or_label_pos_top - root.login_and_create_user_buttons_y_space_between + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+        size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
+
+        text: "or"
+
+        color: (0, 0, 0, 1)
+        font_size: root.login_and_create_user_buttons_font_size - 6
+
+
+
+    RoundedButtonWhite:
+        id: create_user_button
+        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.create_user_button_pos_top - (2*root.login_and_create_user_buttons_y_space_between) + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
+        size_hint: (root.create_user_button_width, root.login_and_create_user_buttons_height)
+        text: "Create user"
+        color: (.6, .3, .5)
+        font_size: root.login_and_create_user_buttons_font_size
+
+        on_release:
+            app.root.current = "create_user"
 
 
 

@@ -42,67 +42,147 @@ class Login(Screen):
 class Login_MainFrame(RelativeLayout):
 
 
-    # -- LANGUAGE BUTTONS
+    # LANGUAGE buttons
 
-    language_buttons_height = .03
+    # - Dynamic
     language_buttons_width = .1
+    language_buttons_height = .03
+
+    language_buttons_font_size = 18
+
+    language_buttons_x_space_between = .02
+
+    # Use negative numbers to move to the left of the center of the screen and positive numbers to move to the right
+    language_buttons_pos_center_x = .0
+
     language_buttons_pos_top = .94
-    language_buttons_move_to_the_right = .00
-    language_buttons_move_to_the_left = .285
-
-    english_button_pos_center_x = .85
-    danish_button_pos_center_x = .73
 
 
-    # -- BIG BUTTONS
+    # - Persistent
+    language_buttons_point_of_reference_center_x = .5 - ((language_buttons_width / 2) + (language_buttons_x_space_between / 2))
 
-    #all_big_buttons_height = .06
+    danish_button_pos_center_x = language_buttons_point_of_reference_center_x + language_buttons_pos_center_x
+    english_button_pos_center_x = danish_button_pos_center_x + language_buttons_width \
+                                 + language_buttons_x_space_between
 
-    #
+
+
+    # WHY MAKE A BUDGET and APP TRAILER buttons
+
+    # - Dynamic
+    why_budget_and_trailer_buttons_width = .46
     why_budget_and_trailer_buttons_height = .042
-    why_budget_and_trailer_buttons_width = .55
-    why_budget_and_trailer_buttons_pos_center_x = .5
-    why_budget_and_trailer_buttons_y_space_between = .02
-    why_budget_and_trailer_buttons_move_up = .03
-    why_budget_and_trailer_buttons_move_down = .00
+
     why_budget_and_trailer_buttons_font_size = 30
 
-    why_budget_button_pos_top = .85
-    trailer_button_pos_top = .79
+    why_budget_and_trailer_buttons_y_space_between = .018
+
+    why_budget_and_trailer_buttons_pos_top = .85
+    why_budget_and_trailer_buttons_pos_center_x = .5
+
+    #----Buttons as a row--------------------------------------------------------
+    # why_budget_and_trailer_buttons_x_space_between = .038
+
+    # Use negative numbers to move to the left of the center of the screen and positive numbers to move to the right
+    # why_budget_and_trailer_buttons_pos_center_x = .0
+
+    # why_budget_and_trailer_buttons_pos_top = .85
+    # ----------------------------------------------------------------------------
 
 
-    #
+    # - Persistent
+
+    why_budget_button_pos_top = why_budget_and_trailer_buttons_pos_top
+
+    trailer_button_pos_top = why_budget_button_pos_top - why_budget_and_trailer_buttons_height \
+                                  - why_budget_and_trailer_buttons_y_space_between
+
+    # ----Buttons as a row--------------------------------------------------------
+
+    # why_budget_and_trailer_buttons_point_of_reference_center_x = .5 - ((why_budget_and_trailer_buttons_width/2)
+    #                                                                   + (why_budget_and_trailer_buttons_x_space_between
+    #                                                                     /2))
+
+    # why_budget_button_pos_center_x = why_budget_and_trailer_buttons_point_of_reference_center_x \
+    #                                 + why_budget_and_trailer_buttons_pos_center_x
+
+    # trailer_button_pos_center_x = why_budget_button_pos_center_x + why_budget_and_trailer_buttons_width \
+    #                              + why_budget_and_trailer_buttons_x_space_between
+    # ----------------------------------------------------------------------------
+
+
+    # LOGIN BOX layout
+
+    # - Dynamic
     login_box_layout_width = .88
     login_box_layout_height = .66
-    login_box_layout_pos_center_x = .5
+
     login_box_layout_pos_top = .7
 
-    #
-    login_label_pos_top = .96
-    login_label_width = .6/login_box_layout_width
-    login_label_height = .04/login_box_layout_height
+    # - Persistent
+    login_box_layout_pos_center_x = .5
+
+
+    # LOGIN label
+
+    # - Dynamic
+    login_label_width = .6
+    login_label_height = .04
     login_label_font_size = 40
+    login_label_top_and_login_box_top_y_space_between = .05
 
+    # - Persistent
+    login_label_pos_top = login_box_layout_pos_top - login_label_top_and_login_box_top_y_space_between
+    login_label_pos_center_x = login_box_layout_pos_center_x
+
+
+    # USERNAME and PASSWORD labels and text inputs
+
+    # - Dynamic
+    username_password_text_inputs_width = width_of_TextInput_Standard()
+    username_password_text_inputs_height = height_of_TextInput_Standard()
+
+    username_password_labels_width = username_password_text_inputs_width - .02
+    username_password_labels_height = username_password_text_inputs_height
+
+    username_password_elements_and_login_label_y_space_between = .05
+
+    username_password_labels_and_username_password_text_inputs_y_space_between = .001
+
+    username_label_text_input_and_password_label_text_input_y_space_between = .09
+
+
+    # - Persistent
+
+    username_password_labels_and_text_inputs_pos_center_x = login_box_layout_pos_center_x
+
+
+
+    username_label_pos_top = login_label_pos_top - username_password_elements_and_login_label_y_space_between
+
+
+    username_text_input_pos_top = username_label_pos_top - (username_password_labels_height) \
+                                  - username_password_labels_and_username_password_text_inputs_y_space_between
+
+    password_label_pos_top = username_text_input_pos_top \
+                             - username_label_text_input_and_password_label_text_input_y_space_between
+
+    password_text_input_pos_top = password_label_pos_top - (username_password_labels_height) \
+                                  + username_password_labels_and_username_password_text_inputs_y_space_between
+
+
+
+    # FORGOT PASSWORD button
+
+    # - Dynamic
+    forgot_password_button_and_password_text_input_y_space_between = .002
+
+    # - Persistent
+    forgot_password_button_pos_top = password_text_input_pos_top - username_password_labels_height \
+                                     - forgot_password_button_and_password_text_input_y_space_between
 
     #
-    text_input_standard_height = height_of_TextInput_Standard()
-    text_input_standard_width = width_of_TextInput_Standard()
-
-    username_password_text_inputs_height = text_input_standard_height / login_box_layout_height
-    username_password_text_inputs_width = text_input_standard_width / login_box_layout_width
-    username_password_text_inputs_y_space_between = .12
-
-    username_password_text_inputs_pos_center_x = .5
-
-    y_space_between_forgot_password_and_password_text_input = .002
-
-    # Username text input top controls top of password text input (and labels connected to the two text inputs)
-    username_text_input_pos_top = .76
-
-    password_text_input_pos_top = username_text_input_pos_top - username_password_text_inputs_height - username_password_text_inputs_y_space_between
-
-    #
-    login_and_create_user_buttons_height = .06/login_box_layout_height
+    login_and_create_user_buttons_height = .06
     login_and_create_user_buttons_pos_center_x = .5
     login_and_create_user_buttons_y_space_between = .04
     login_and_create_user_buttons_move_up = .2
@@ -173,14 +253,10 @@ class Login_MainFrame(RelativeLayout):
             self.ids.enter_username_label.text = "Enter username:"
             self.ids.enter_password_label.text = "Enter password:"
 
-            self.username = TextInput_Standard(Login_MainFrame.username_password_text_inputs_pos_center_x,
-                                               Login_MainFrame.username_text_input_pos_top, False, "Username",
-                                               Login_MainFrame.username_password_text_inputs_width,
-                                               Login_MainFrame.username_password_text_inputs_height)
-            self.password = TextInput_Standard(Login_MainFrame.username_password_text_inputs_pos_center_x,
-                                               Login_MainFrame.password_text_input_pos_top, True, "Password",
-                                               Login_MainFrame.username_password_text_inputs_width,
-                                               Login_MainFrame.username_password_text_inputs_height)
+            self.username = TextInput_Standard(Login_MainFrame.username_password_labels_and_text_inputs_pos_center_x,
+                                               Login_MainFrame.username_text_input_pos_top, False, "Username",)
+            self.password = TextInput_Standard(Login_MainFrame.username_password_labels_and_text_inputs_pos_center_x,
+                                               Login_MainFrame.password_text_input_pos_top, True, "Password")
 
             #self.ids.forgot_password_label.text = "[ref=forgot password]Forgot password[/ref]"
             self.ids.forgot_password_button.text = "Forgot password"
@@ -205,14 +281,11 @@ class Login_MainFrame(RelativeLayout):
             self.ids.enter_username_label.text = "Indtast brugernavn:"
             self.ids.enter_password_label.text = "Indtast kodeord:"
 
-            self.username = TextInput_Standard(Login_MainFrame.username_password_text_inputs_pos_center_x,
-                                               Login_MainFrame.username_text_input_pos_top, False, "Brugernavn",
-                                               Login_MainFrame.username_password_text_inputs_width,
-                                               Login_MainFrame.username_password_text_inputs_height)
-            self.password = TextInput_Standard(Login_MainFrame.username_password_text_inputs_pos_center_x,
-                                               Login_MainFrame.password_text_input_pos_top, True, "Kodeord",
-                                               Login_MainFrame.username_password_text_inputs_width,
-                                               Login_MainFrame.username_password_text_inputs_height)
+            self.username = TextInput_Standard(Login_MainFrame.username_password_labels_and_text_inputs_pos_center_x,
+                                               Login_MainFrame.username_text_input_pos_top, False, "Brugernavn")
+
+            self.password = TextInput_Standard(Login_MainFrame.username_password_labels_and_text_inputs_pos_center_x,
+                                               Login_MainFrame.password_text_input_pos_top, True, "Kodeord")
 
             #self.ids.forgot_password_label.text = "[ref=glemt kodeord]Glemt kodeord[/ref]"
             self.ids.forgot_password_button.text = "Glemt kodeord"
@@ -223,8 +296,8 @@ class Login_MainFrame(RelativeLayout):
 
         self.add_widget(self.top_bar)
 
-        self.ids.login_box_layout.add_widget(self.username)
-        self.ids.login_box_layout.add_widget(self.password)
+        self.add_widget(self.username)
+        self.add_widget(self.password)
 
 
 
@@ -233,7 +306,6 @@ class Login_MainFrame(RelativeLayout):
         app_language = get_app_language()
 
         if app_language == "english":
-
 
 
             title_connection_error = "Connection error"
