@@ -147,7 +147,7 @@ class CreateUser_MainFrame(RelativeLayout):
     def refresh_text_at_layout(self, top_bar_title, username_label, username_placeholder, password_1_label,
                                password_1_placeholder, password_2_label, password_2_placeholder, create_user_button):
 
-        self.top_bar = Rel_TopBar(top_bar_title, True, False)
+        self.top_bar = Rel_TopBar(top_bar_title, True, False, True)
         self.ids.enter_username_label.text = username_label
 
         pos_y_of_username_text_input_1 = CreateUser_MainFrame.y_pos_of_top_label \

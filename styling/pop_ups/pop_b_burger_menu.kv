@@ -1,7 +1,7 @@
 
 <Pop_BurgerMenu>:
 
-    title: "myBudget"
+    title: "Menu"
     title_size: root.font_size_of_title
 
     title_align: "center"
@@ -23,8 +23,10 @@
 
             font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (root.with_of_buttons, root.height_of_buttons)
+
             background_color: (1, 1, 1, 0)
+
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             pos_hint: {'center_x': .5, "top": 1}
 
             on_release:
@@ -39,8 +41,9 @@
 
             font_size: root.font_size_of_buttons
             color: (0, 0, 0, 1)
-            size_hint: (root.with_of_buttons, root.height_of_buttons)
             background_color: (1, 1, 1, 0)
+
+            size_hint: (root.with_of_buttons, root.height_of_buttons)
             pos_hint: {'center_x': .5, "top": 1 - (1*root.y_space_from_button_top_to_button_top)}
 
             on_release:

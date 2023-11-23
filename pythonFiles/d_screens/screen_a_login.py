@@ -77,7 +77,7 @@ class Login_MainFrame(RelativeLayout):
 
     why_budget_and_trailer_buttons_y_space_between = .018
 
-    why_budget_and_trailer_buttons_pos_top = .85
+    why_budget_and_trailer_buttons_pos_top = .88
     why_budget_and_trailer_buttons_pos_center_x = .5
 
     #----Buttons as a row--------------------------------------------------------
@@ -115,9 +115,9 @@ class Login_MainFrame(RelativeLayout):
 
     # - Dynamic
     login_box_layout_width = .88
-    login_box_layout_height = .66
+    login_box_layout_height = .68
 
-    login_box_layout_pos_top = .7
+    login_box_layout_pos_top = .74
 
     # - Persistent
     login_box_layout_pos_center_x = .5
@@ -129,7 +129,7 @@ class Login_MainFrame(RelativeLayout):
     login_label_width = .6
     login_label_height = .04
     login_label_font_size = 40
-    login_label_top_and_login_box_top_y_space_between = .05
+    login_label_top_and_login_box_top_y_space_between = .032
 
     # - Persistent
     login_label_pos_top = login_box_layout_pos_top - login_label_top_and_login_box_top_y_space_between
@@ -145,7 +145,7 @@ class Login_MainFrame(RelativeLayout):
     username_password_labels_width = username_password_text_inputs_width - .02
     username_password_labels_height = username_password_text_inputs_height
 
-    username_password_elements_and_login_label_y_space_between = .05
+    username_password_elements_and_login_label_y_space_between = .06
 
     username_password_labels_and_username_password_text_inputs_y_space_between = .001
 
@@ -153,13 +153,9 @@ class Login_MainFrame(RelativeLayout):
 
 
     # - Persistent
-
     username_password_labels_and_text_inputs_pos_center_x = login_box_layout_pos_center_x
 
-
-
     username_label_pos_top = login_label_pos_top - username_password_elements_and_login_label_y_space_between
-
 
     username_text_input_pos_top = username_label_pos_top - (username_password_labels_height) \
                                   - username_password_labels_and_username_password_text_inputs_y_space_between
@@ -175,30 +171,51 @@ class Login_MainFrame(RelativeLayout):
     # FORGOT PASSWORD button
 
     # - Dynamic
-    forgot_password_button_and_password_text_input_y_space_between = .002
+    forgot_password_button_width = .38
+    forgot_password_button_height = .04
+    forgot_password_button_and_password_text_input_y_space_between = .001
 
     # - Persistent
     forgot_password_button_pos_top = password_text_input_pos_top - username_password_labels_height \
                                      - forgot_password_button_and_password_text_input_y_space_between
 
-    #
-    login_and_create_user_buttons_height = .06
-    login_and_create_user_buttons_pos_center_x = .5
-    login_and_create_user_buttons_y_space_between = .04
-    login_and_create_user_buttons_move_up = .2
-    login_and_create_user_buttons_move_down = .14
+    forgot_password_button_pos_center_x = login_box_layout_pos_center_x
 
+
+
+    # LOGIN button, OR label and CREATE USER button
+
+    # - Dynamic
+    login_button_width = .35
+    or_label_width = .2
+    create_user_button_width = .56
+
+    login_and_create_user_buttons_height = .06
+    or_label_height = .04
 
     login_and_create_user_buttons_font_size = 38
-
-    login_button_width = .35/login_box_layout_width
-    create_user_button_width = .6/login_box_layout_width
+    or_label_font_size = login_and_create_user_buttons_font_size - 6
 
 
-    login_button_pos_top = .3
-    create_user_button_pos_top = .18
+    login_button_and_forgot_password_button_y_space_between = .04
 
-    or_label_pos_top = .24
+    or_label_and_login_create_user_buttons_y_space_between = .02
+
+
+
+    # Persistent
+    login_and_create_user_buttons_pos_center_x = login_box_layout_pos_center_x
+    or_label_pos_center_x = login_label_pos_center_x
+
+    login_button_pos_top = forgot_password_button_pos_top - forgot_password_button_height \
+                           - login_button_and_forgot_password_button_y_space_between
+
+    or_label_pos_top = login_button_pos_top - login_and_create_user_buttons_height \
+                       - or_label_and_login_create_user_buttons_y_space_between
+
+    create_user_button_pos_top = or_label_pos_top - or_label_height - or_label_and_login_create_user_buttons_y_space_between
+
+
 
 
     def __init__(self, **kwargs):
@@ -241,10 +258,8 @@ class Login_MainFrame(RelativeLayout):
 
         if self.app_language == "english":
 
-            self.popup_forgot_password_title = "Reset password"
-            self.popup_forgot_password_message = "Do you want to reset your password?"
 
-            self.top_bar = Rel_TopBar("Login", False, False)
+            self.top_bar = Rel_TopBar("Login", False, False, True, "Choose language")
 
             self.ids.why_make_a_budget_button.text = "Why Make A Budget?"
             self.ids.see_app_trailer_button.text = "See app trailer"
@@ -261,6 +276,9 @@ class Login_MainFrame(RelativeLayout):
             #self.ids.forgot_password_label.text = "[ref=forgot password]Forgot password[/ref]"
             self.ids.forgot_password_button.text = "Forgot password"
 
+            self.popup_forgot_password_title = "Reset password"
+            self.popup_forgot_password_message = "Do you want to reset your password?"
+
             self.ids.create_user_button.text = "Create User"
             self.ids.or_label.text = "or"
             self.ids.login_button.text = "Log in"
@@ -268,11 +286,7 @@ class Login_MainFrame(RelativeLayout):
 
         elif self.app_language == "danish":
 
-            self.top_bar = Rel_TopBar("Login", False, False)
-
-            self.popup_forgot_password_title = "Nulstil kodeord"
-            self.popup_forgot_password_message = "Indtast din mail, så sender vi et link," \
-                                                 "\nhvor du kan nulstille dit kodeord"
+            self.top_bar = Rel_TopBar("Login", False, False, True, "Vælg sprog")
 
             self.ids.why_make_a_budget_button.text = "Hvorfor lave et budget?"
             self.ids.see_app_trailer_button.text = "Se app trailer"
@@ -289,6 +303,10 @@ class Login_MainFrame(RelativeLayout):
 
             #self.ids.forgot_password_label.text = "[ref=glemt kodeord]Glemt kodeord[/ref]"
             self.ids.forgot_password_button.text = "Glemt kodeord"
+
+            self.popup_forgot_password_title = "Nulstil kodeord"
+            self.popup_forgot_password_message = "Indtast din mail, så sender vi et link," \
+                                                 "\nhvor du kan nulstille dit kodeord"
 
             self.ids.create_user_button.text = "Opret bruger"
             self.ids.or_label.text = "eller"

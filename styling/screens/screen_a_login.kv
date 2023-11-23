@@ -131,18 +131,18 @@
 
 
     Button:
-        #id: forgot_password_label
+
         id: forgot_password_button
-        pos_hint: {"center_x": root.username_password_labels_and_text_inputs_pos_center_x, "top": root.forgot_password_button_pos_top}
-        size_hint: (root.username_password_text_inputs_width, root.username_password_text_inputs_height)
+
         text: "Forgot my password"
         background_color: (0, 0, 0, 0)
         color: (0, 0, 0, 1)
         font_size: 22
 
         underline: True
-        #markup: True
-        #on_ref_press:
+
+        size_hint: (root.forgot_password_button_width, root.forgot_password_button_height)
+        pos_hint: {"center_x": root.forgot_password_button_pos_center_x, "top": root.forgot_password_button_pos_top}
 
         on_press:
             root.on_press_color()
@@ -157,14 +157,13 @@
     RoundedButtonGreen:
         id: login_button
 
-        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.login_button_pos_top + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-        size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
         text: "Login"
         color: (45/255, 46/255, 44/255, 1)
         font_size: root.login_and_create_user_buttons_font_size
 
-        #background_normal: ''
-        #background_color: (.2, .06, .1)
+        size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
+        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.login_button_pos_top}
+
         on_release:
             root.login()
 
@@ -172,23 +171,28 @@
 
     Label:
         id: or_label
-        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.or_label_pos_top - root.login_and_create_user_buttons_y_space_between + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-        size_hint: (root.login_button_width, root.login_and_create_user_buttons_height)
 
         text: "or"
-
         color: (0, 0, 0, 1)
-        font_size: root.login_and_create_user_buttons_font_size - 6
+        font_size: root.or_label_font_size
+        italic: True
+
+        size_hint: (root.or_label_width, root.or_label_height)
+        pos_hint: {"center_x": root.or_label_pos_center_x, "top": root.or_label_pos_top}
+
+
 
 
 
     RoundedButtonWhite:
         id: create_user_button
-        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.create_user_button_pos_top - (2*root.login_and_create_user_buttons_y_space_between) + root.login_and_create_user_buttons_move_up - root.login_and_create_user_buttons_move_down}
-        size_hint: (root.create_user_button_width, root.login_and_create_user_buttons_height)
+
         text: "Create user"
-        color: (.6, .3, .5)
+        color: (.6, .3, .5, 1)
         font_size: root.login_and_create_user_buttons_font_size
+
+        size_hint: (root.create_user_button_width, root.login_and_create_user_buttons_height)
+        pos_hint: {"center_x": root.login_and_create_user_buttons_pos_center_x, "top": root.create_user_button_pos_top}
 
         on_release:
             app.root.current = "create_user"
