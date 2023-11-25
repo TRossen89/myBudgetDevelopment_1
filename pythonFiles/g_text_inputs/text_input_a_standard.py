@@ -24,6 +24,7 @@ class TextInput_Standard(TextInput):
         self.hint_text = placeholder
         self.pos_hint = {"center_x": pos_x, "top": pos_y}
         self.size_hint = (width, height)
+       # self.size = (590, 80)
 
 
     def on_text_username_checking_if_username_exists(self):
