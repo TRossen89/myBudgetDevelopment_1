@@ -24,6 +24,10 @@ class SettingsMB(Screen):
 
     pass
 
+    def save_as_current_screen(self):
+        set_current_screen("settings_mb")
+
+
     def save_as_previous_screen(self):
 
         save_screen_as_previous_screen("settings_mb")
@@ -34,15 +38,54 @@ class SettingsMB(Screen):
 
 class SettingsMB_MainFrame(RelativeLayout):
 
-    width_of_labels = .38
-    height_of_labels = .1
 
-    x_space_between_describing_and_informing_labels = .1
-    x_pos_of_all_describing_labels = .008
+    # ALL BACKGROUND BUTTONS
 
-    x_pos_of_all_informing_labels = x_pos_of_all_describing_labels + width_of_labels + x_space_between_describing_and_informing_labels
+    # - Dynamic
 
-    y_space_between_top_bar_and_first_label = .1
+    all_background_buttons_width = 1
+    all_background_buttons_height = .06
+
+    all_background_buttons_pos_center_x = .5
+
+
+    # - Persistent
+
+    # ALL DESCRIBING LABELS
+
+    # - Dynamic
+    all_describing_labels_width = .38
+    all_describing_labels_height = .06
+
+    all_describing_labels_pos_x = .06
+
+
+    # ALL INFORMING LABELS
+
+    # - Dynamic
+
+    all_informing_labels_width = .35
+
+    informing_labels_and_describing_labels_x_space_between = .08
+
+    # - Persistent
+    all_informing_labels_height = all_describing_labels_height
+
+    all_informing_labels_pos_x = all_describing_labels_pos_x + all_describing_labels_width \
+                                 + informing_labels_and_describing_labels_x_space_between
+
+
+    # ALL LABELS
+
+    # - Dynamic
+    first_label_and_top_bar_y_space_between = .1
+
+    all_labels_y_space_between = .02
+
+    # - Persistent
+    all_labels_reference_pos_top = 1 - first_label_and_top_bar_y_space_between
+    all_labels_from_top_to_top_space = all_describing_labels_height + all_labels_y_space_between
+
 
 
     def __init__(self, **kwargs):

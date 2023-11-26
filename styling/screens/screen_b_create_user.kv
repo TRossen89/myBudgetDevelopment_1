@@ -1,5 +1,8 @@
 <CreateUser>:
 
+    on_enter:
+        root.save_as_current_screen()
+
     on_pre_leave:
         root.save_as_previous_screen()
 
@@ -8,10 +11,10 @@
 
 
     RelativeLayout:
-        id: create_user_box
-        pos_hint: {"center_x": root.create_user_box_pos_center_x, "top": root.create_user_box_pos_top}
-        size_hint: (root.create_user_box_width, root.create_user_box_height)
-        background_color: (.8, .7, .6)
+        id: background_box
+        pos_hint: {"center_x": root.background_box_pos_center_x, "top": root.background_box_pos_top}
+        size_hint: (root.background_box_width, root.background_box_height)
+        #background_color: (.8, .7, .6)
 
 
         canvas:
@@ -19,7 +22,7 @@
                 rgba: (.2, .16, .14, .4)
             RoundedRectangle:
                 size: self.size
-                radius: [root.create_user_box_corners_radius]
+                radius: [root.background_box_corners_radius]
 
 
     Label:

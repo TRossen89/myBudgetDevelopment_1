@@ -29,6 +29,10 @@ class Login(Screen):
         self.add_widget(self.main_frame_layout)
 
 
+    def save_as_current_screen(self):
+        set_current_screen("login")
+
+
     def save_as_previous_screen(self):
 
         save_screen_as_previous_screen("login")
@@ -225,7 +229,6 @@ class Login_MainFrame(RelativeLayout):
         #self.id = "login_main_frame"
 
         self.refresh_layout()
-
 
 
     def english_as_language(self):

@@ -27,6 +27,9 @@ class Frontpage(Screen):
 
     pass
 
+    def save_as_current_screen(self):
+        set_current_screen("frontpage")
+
     def save_as_previous_screen(self):
 
         save_screen_as_previous_screen("frontpage")
@@ -36,26 +39,32 @@ class Frontpage(Screen):
 
 class Frontpage_MainFrame(RelativeLayout):
 
-    ########################################
-    # -- SPACES:
 
-    y_space_between_all_buttons = NumericProperty(.04)
+    # BACKGROUND BOX layout
 
-
-    ########################################
-    # -- BOXES (LAYOUTS):
-
-    # The layout framing all the buttons
-    width_of_all_buttons_box = NumericProperty(.9)
-    height_of_all_buttons_box = NumericProperty(.9)
-    y_pos_of_all_buttons_box = NumericProperty(.925)
+    # - Dynamic
+    background_box_width = .9
+    background_box_height = .9
+    background_box_pos_center_x = .5
+    background_box_pos_top = .925
 
 
-    ########################################
-    # -- BUTTONS
+    # - ALL BUTTONS
 
-    height_of_all_buttons = NumericProperty(.08)
-    width_of_all_buttons = NumericProperty(.8)
+    # - Dynamic
+    all_buttons_width = .86
+    all_buttons_height = .08
+
+    all_buttons_and_background_box_y_space_between = .02
+    all_buttons_y_space_between = .02
+
+
+    # - Persistent
+    all_buttons_pos_center_x = background_box_pos_center_x
+
+    all_buttons_reference_pos_top = background_box_pos_top - all_buttons_and_background_box_y_space_between
+    all_buttons_from_top_to_top_space = all_buttons_height + all_buttons_y_space_between
+
 
 
     def __init__(self, **kwargs):
@@ -70,7 +79,7 @@ class Frontpage_MainFrame(RelativeLayout):
         else:
             user_name = user[1]
 
-            self.top_bar = Rel_TopBar(user_name, False)
+            self.top_bar = Rel_TopBar(user_name, False, True, False)
             self.add_widget(self.top_bar)
 
 
@@ -88,6 +97,12 @@ class Frontpage_MainFrame(RelativeLayout):
             self.ids.your_account_button.text = "Your Account"
             self.ids.logout_button.text = "Log out"
 
+            self.logout_popup_title = "Logout"
+            self.logout_popup_message = "Are you sure want to log out?"
+            self.logout_popup_yes_button = "Yes"
+            self.logout_popup_no_button = "Cancel"
+
+
 
 
         elif self.app_language == "danish":
@@ -101,10 +116,16 @@ class Frontpage_MainFrame(RelativeLayout):
             self.ids.your_account_button.text = "Din konto"
             self.ids.logout_button.text = "Log ud"
 
+            self.logout_popup_title = "Log ud"
+            self.logout_popup_message = "Er du sikker på du vil logge ud?"
+            self.logout_popup_yes_button = "Ja"
+            self.logout_popup_no_button = "Cancel"
+
 
     def logout(self):
 
-        self.popup_logout = Pop_Logout()
+        self.popup_logout = Pop_Logout(self.logout_popup_title, self.logout_popup_message,
+                                       self.logout_popup_yes_button, self.logout_popup_no_button)
         self.popup_logout.open()
 
 

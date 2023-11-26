@@ -24,9 +24,12 @@ class ChooseLanguage(Screen):
 
     pass
 
+    def save_as_current_screen(self):
+        set_current_screen("choose_language")
+
     def save_as_previous_screen(self):
 
-        save_screen_as_previous_screen("settings")
+        save_screen_as_previous_screen("choose_language")
 
 
     pass

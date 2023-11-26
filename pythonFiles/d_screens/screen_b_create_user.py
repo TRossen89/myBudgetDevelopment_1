@@ -30,6 +30,10 @@ class CreateUser(Screen):
         self.add_widget(self.main_frame_layout)
 
 
+    def save_as_current_screen(self):
+        set_current_screen("create_user")
+
+
     def save_as_previous_screen(self):
 
         save_screen_as_previous_screen("create_user")
@@ -45,32 +49,32 @@ class CreateUser_MainFrame(RelativeLayout):
     height_text_input_standard = height_of_TextInput_Standard()
 
 
-    # Create user background box layout
+    # BACKGROUND BOX layout
 
     # - Dynamic
 
-    create_user_box_width = .8
-    create_user_box_height = .8
+    background_box_width = .86
+    background_box_height = .8
 
-    create_user_box_pos_center_x = .5
-    create_user_box_pos_top = .9
+    background_box_pos_center_x = .5
+    background_box_pos_top = .9
 
-    create_user_box_corners_radius = 10
+    background_box_corners_radius = 10
 
 
 
-    # Enter username label
+    # ENTER USERNAME label
 
     # - Dynamic
     enter_username_label_width = width_text_input_standard
     enter_username_label_height = height_text_input_standard
 
-    create_user_box_and_enter_username_label_y_space_between = .05
+    background_box_and_enter_username_label_y_space_between = .05
 
 
     # - Persistent
-    enter_username_label_pos_center_x = create_user_box_pos_center_x
-    enter_username_label_pos_top = create_user_box_pos_top - create_user_box_and_enter_username_label_y_space_between
+    enter_username_label_pos_center_x = background_box_pos_center_x
+    enter_username_label_pos_top = background_box_pos_top - background_box_and_enter_username_label_y_space_between
 
 
 
@@ -84,12 +88,12 @@ class CreateUser_MainFrame(RelativeLayout):
 
 
     # - Persistent
-    username_text_input_pos_center_x = create_user_box_pos_center_x
+    username_text_input_pos_center_x = background_box_pos_center_x
     username_text_input_pos_top = enter_username_label_pos_top - enter_username_label_height \
                                   - enter_username_label_and_username_text_input_y_space_between
 
 
-    # Enter password_1 label
+    # ENTER PASSWORD_1 label
 
     # - Dynamic
     enter_password_1_label_width = width_text_input_standard
@@ -98,12 +102,12 @@ class CreateUser_MainFrame(RelativeLayout):
     enter_password_1_label_and_username_text_input_y_space_between = .05
 
     # - Persistent
-    enter_password_1_label_pos_center_x = create_user_box_pos_center_x
+    enter_password_1_label_pos_center_x = background_box_pos_center_x
     enter_password_1_label_pos_top = username_text_input_pos_top - username_text_input_height \
                                      - enter_password_1_label_and_username_text_input_y_space_between
 
 
-    # Password_1_text_input
+    # PASSWORD_1_text_input
 
     # - Dynamic
     password_1_text_input_width = width_text_input_standard
@@ -112,12 +116,12 @@ class CreateUser_MainFrame(RelativeLayout):
     enter_password_1_label_and_password_1_text_input_y_space_between = .01
 
     # - Persistent
-    password_1_text_input_pos_center_x = create_user_box_pos_center_x
+    password_1_text_input_pos_center_x = background_box_pos_center_x
     password_1_text_input_pos_top = enter_password_1_label_pos_top - enter_password_1_label_height \
                                   - enter_password_1_label_and_password_1_text_input_y_space_between
 
 
-    # Enter password_2 label
+    # ENTER PASSWORD_2 label
 
     # - Dynamic
     enter_password_2_label_width = width_text_input_standard
@@ -126,13 +130,13 @@ class CreateUser_MainFrame(RelativeLayout):
     enter_password_2_label_and_password_1_text_input_y_space_between = .05
 
     # - Persistent
-    enter_password_2_label_pos_center_x = create_user_box_pos_center_x
+    enter_password_2_label_pos_center_x = background_box_pos_center_x
     enter_password_2_label_pos_top = password_1_text_input_pos_top - password_1_text_input_height \
                                      - enter_password_2_label_and_password_1_text_input_y_space_between
 
 
 
-    # Password_2_text_input
+    # PASSWORD_2_text_input
 
     # - Dynamic
     password_2_text_input_width = width_text_input_standard
@@ -141,13 +145,13 @@ class CreateUser_MainFrame(RelativeLayout):
     password_2_label_and_password_2_text_input_y_space_between = .01
 
     # - Persistent
-    password_2_text_input_pos_center_x = create_user_box_pos_center_x
+    password_2_text_input_pos_center_x = background_box_pos_center_x
     password_2_text_input_pos_top = enter_password_2_label_pos_top - enter_password_2_label_height \
                                           - password_2_label_and_password_2_text_input_y_space_between
 
 
 
-    # Create user button
+    # CREATE USER button
 
     # - Dynamic
     create_user_button_width = .8
@@ -156,8 +160,9 @@ class CreateUser_MainFrame(RelativeLayout):
     create_user_button_and_password_2_text_input_y_space_between = .08
 
     # - Persistent
-    create_user_button_pos_center_x = create_user_box_pos_center_x
-    create_user_button_pos_top = password_2_text_input_pos_top - password_2_text_input_height - create_user_button_and_password_2_text_input_y_space_between
+    create_user_button_pos_center_x = background_box_pos_center_x
+    create_user_button_pos_top = password_2_text_input_pos_top - password_2_text_input_height \
+                                 - create_user_button_and_password_2_text_input_y_space_between
 
 
 

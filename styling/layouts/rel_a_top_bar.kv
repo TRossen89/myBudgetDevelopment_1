@@ -23,7 +23,7 @@
         pos_hint: {"x": .08, "top": 1}
 
         on_release:
-            root.update_previous_screen()
+            root.get_previous_screen()
             app.root.current = root.previous_screen
             #root.manager.transition.direction = "right"
 
@@ -44,22 +44,6 @@
 
         on_release:
             root.burger_menu_open()
-
-
-    Button:
-        id: language_menu
-
-        text: ""
-        color: (0, 0, 0, 1)
-        font_size: 20
-
-        size_hint: (.16, .9)
-        pos_hint: {"x": .78, "top": 1}
-
-        disabled: True
-
-        on_release:
-            root.language_menu_open()
 
 
 

@@ -1,6 +1,8 @@
 
 <Login>:
 
+    on_enter:
+        root.save_as_current_screen()
     on_pre_leave:
         root.save_as_previous_screen()
 
